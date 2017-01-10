@@ -1,28 +1,34 @@
-  /*var canvas = document.getElementById('canvas');
-	var context = canvas.getContext('2d');*/ //使用context进行绘制
+  /**
+   * [context description]
+   * @type {[type]}
+   
+	var context = canvas.getContext('2d'); //使用context进行绘制
 
 	//js指定宽高
-	/*canvas.width = 1024;
-	canvas.height = 768;*/
+	canvas.width = 1024;
+	canvas.height = 768;
     
-//基于状态的绘图，先有状态，后有绘制(先准备要画什么)
+  //基于状态的绘图，先有状态，后有绘制(先准备要画什么)
 
-  /*  context.moveTo(100,100); //笔尖放在（100,100）
+   context.moveTo(100,100); //笔尖放在（100,100）
     context.lineTo(700,700); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
 
     context.lineWidth =5 ; //粗细
     context.strokeStyle = '#005588';//颜色
 
-    context.stroke(); //绘制线条*/
+    context.stroke(); //绘制线条
 
-   /* context.moveTo(100,100); //笔尖放在（100,100）
+   context.moveTo(100,100); //笔尖放在（100,100）
     context.lineTo(700,700); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
     context.lineTo(100,700);
     context.lineTo(100,100); 
 
    	context.fillStyle ='rgb(2,60,30)';
-   	context.fill();  //填充绘画的颜色、渐变或模式*/
+   	context.fill();  //填充绘画的颜色、渐变或模式
 
+//绘制弧形、圆
+    arc(x,y,r,start,stop); 
+*/
     /*七巧板-1*/
     var tangram1 = [
         {
@@ -88,24 +94,31 @@
   window.onload = function(){
     /*三角形*/
     var canvas0 = document.getElementById('canvas0');
-    var context = canvas0.getContext('2d');
+    var context0 = canvas0.getContext('2d');
 
-    context.moveTo(60,160); //笔尖放在（100,100）
-    context.lineTo(190,190); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
+    context0.moveTo(60,160); //笔尖放在（100,100）
+    context0.lineTo(190,190); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
 
-    context.lineWidth =2 ; //粗细
-    context.strokeStyle = '#005588';//颜色
-    context.stroke(); //绘制线条*/
+    context0.lineWidth =2 ; //粗细
+    context0.strokeStyle = '#005588';//颜色
+    context0.stroke(); //绘制线条*/
 
-    context.beginPath();
-    context.moveTo(0,0); //笔尖放在（100,100）
-    context.lineTo(100,100); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
-    context.lineTo(0,100);
-    context.lineTo(0,0); 
+    context0.beginPath();
+    context0.moveTo(0,0); //笔尖放在（100,100）
+    context0.lineTo(100,100); //从（100,100）绘制到（700,700），以上操作，都为意图绘制并未开始画
+    context0.lineTo(0,100);
+    context0.lineTo(0,0); 
 
-    context.fillStyle ='#66cc99';
-    context.fill(); 
+    context0.fillStyle ='#66cc99';
+    context0.fill(); 
 
+    /*弧线、圆*/
+    var canvas00 = document.getElementById('canvas00');
+    var context00 = canvas00.getContext('2d');
+    context00.lineWidth =2 ;
+    context00.strokeStyle = '#005588';
+    context00.arc(100,100,50,0,1.5*Math.PI); //arc()状态，以(100,100)为圆心，以50为半径，从0至1.5PI顺时针绘制（默认顺时针false）
+    context00.stroke();
 
     /*七巧板-1*/
     var canvas1 = document.getElementById('canvas1');
