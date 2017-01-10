@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    text-align: center;
+}
+h1{
+    font-size: 24px;
+
+    padding: 10px;
+}
+h2{
+    font-size: 18px;
+}
+div.wrap{
+    overflow: hidden;
+    width: 700px;
+    margin: 0 auto;
+}
+section{
+    float: left;
+    margin: 10px;
+}
+canvas{
+    display: block;
+    margin: 5px auto 15px;
+    border: solid 1px #ccc;
+}
