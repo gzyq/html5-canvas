@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Canvas小球demo</title>
+	<link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div class="nav">
+	<a href="ball.html">小球</a>
+	<a href="index.html">倒计时</a>
+	<a href="clock.html">时钟</a>
+</div>
+<h1>canvas单个小球落下</h1>
+<canvas id="canvas" style="border:solid 1px #CCC;">
+	当前浏览器不支持canvas，请更换浏览器后再试。
+</canvas>
+
+<script>
+	var ball ={
+		x:412,
+		y:100,
+		y:100,
+		r:10,
+		g:2,   //重力加速度
+		vx:-4, //x速度（正右负左）
+		vy:-5,  //y速度 （正上负下）
+		color:"#005588"
+	};
+
+	window.onload = function(){
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		canvas.width =600;
+		canvas.height = 600;
+
+		setInterval(function(){
+			render(context);
+			update();
+		},50);
+	}
+
+	function update(){
+		ball.x+=ball.vx;
+		ball.y+=ball.vy;
+		ball.vy+=ball.g; //y轴有重力加速度再加上
+
+		if(ball.y>=600-ball.r){ //小球底部已经触碰到底部边缘
+			ball.y = 600-ball.r;
+			//ball.vy = -ball.vy; //反弹
+			ball.vy = -ball.vy*0.5; //每次反弹减速（更加真实）
+		}
+	}
+	function render(cxt){
+		cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
+		cxt.fillStyle = ball.color;
+		cxt.beginPath();
+		cxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+		cxt.closePath();
+
+		cxt.fill();
+	}
+
+</script>
+</body>
+</html>

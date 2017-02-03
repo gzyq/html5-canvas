@@ -143,10 +143,11 @@
         context.lineTo(point[i].x,point[i].y);
       }
       context.lineTo(point[0].x,point[0].y); //闭合，有context.closePath();不要也可以
+      context.stroke();
       context.fillStyle = color;
       //context.closePath();
       context.fill();
-      context.stroke();
+      
 
     }
 

@@ -5,8 +5,8 @@ var MARGIN_TOP = 60;
 var MARGIN_LEFT = 30;
 
 //const endTime = new Date(2017,0,12,18,47,52);
-var endTime = new Date();
-endTime.setTime(endTime.getTime()+3600*1000); //设置为当前打开网页时间往后一个小时
+//var endTime = new Date();
+//endTime.setTime(endTime.getTime()+3600*1000); //设置为当前打开网页时间往后一个小时
 
 var curShowTimeSeconds = 0;
 
@@ -29,10 +29,9 @@ window.onload = function(){
 }
 function getCurrentShowTimeSeconds(){
 	var curTime = new Date(); 
-	var ret = endTime.getTime() - curTime.getTime(); //毫秒数
-	ret = Math.round(ret/1000);
+	var ret = curTime.getHours()*3600+curTime.getMinutes()*60+curTime.getSeconds();//今天一共走过了多少秒
 
-	return ret>0?ret:0; //倒计时结束，返回0
+	return ret; 
 }
 
 function update(){

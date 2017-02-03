@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Canvas基础-星空-3</title>
+	<meta name="description" content="Canvas基础,使用渐变">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="wrap">
+	<canvas id="canvas" width="800" height="400">
+		当前浏览器不支持canvas，请更换浏览器后再试。
+	</canvas>
+</div>
+<script>
+window.onload = function(){
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	
+	/*var skyStyle = context.createRadialGradient(canvas.width,canvas.height,0,canvas.width,canvas.height,canvas.height); */ //径向渐变
+	var skyStyle = context.createLinearGradient(0,0,0,canvas.height); //垂直，线性渐变
+	skyStyle.addColorStop(0.0,'#000');
+	skyStyle.addColorStop(1.0,'#035');
+	context.fillStyle=skyStyle;
+
+	context.fillRect(0,0,canvas.width,canvas.height);
+
+	for(var i = 0;i<150; i++){ //150颗
+
+		var r = Math.random()*10+3; 
+		var x = Math.random()*canvas.width;
+		var y = Math.random()*canvas.height*0.70; //星星的位置在画布上70%位置
+		var ro = Math.random()*360;
+
+		drawStar(context,r,x,y,ro); 
+	}
+}
+
+function drawStar(cxt,r,x,y,rot){
+
+	cxt.save();
+
+	cxt.translate(x,y);
+	cxt.rotate(rot/180*Math.PI);
+	cxt.scale(r,r); //随机缩放
+
+	starPath(cxt);
+
+	cxt.fillStyle = '#F8F8FF';
+
+	cxt.fill();
+	cxt.restore();
+}
+
+function starPath(cxt){
+	cxt.beginPath();
+
+	for(var i=0;i<5;i++){
+		cxt.lineTo( Math.cos((18+i*72)/180*Math.PI),
+					    -Math.sin((18+i*72)/180*Math.PI)); //外侧
+
+		cxt.lineTo( Math.cos((54+i*72)/180*Math.PI)*0.5,
+					    -Math.sin((54+i*72)/180*Math.PI)*0.5); //内侧,半径设为外侧0.5倍
+	}
+
+	cxt.closePath();
+}
+</script>
+</body>
+</html>

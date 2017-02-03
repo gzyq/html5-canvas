@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Canvas基础-渐变</title>
+	<link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div class="wrap">
+	<canvas id="canvas1" width="200" height="200">
+		当前浏览器不支持canvas，请更换浏览器后再试。
+	</canvas>
+	<canvas id="canvas2" width="200" height="200">
+		当前浏览器不支持canvas，请更换浏览器后再试。
+	</canvas>
+
+	<canvas id="canvas3" width="200" height="200">
+		当前浏览器不支持canvas，请更换浏览器后再试。
+	</canvas>
+</div>
+
+<script>
+	 /*线性
+	 	*
+	 var grd = context.createLinearGradient(xstart,ystart,xend,yend);
+	 grd.addColorStop(stop,color); *///第一个参数，起始位置 */
+
+	var canvas1 = document.getElementById('canvas1');
+	var context1 = canvas1.getContext('2d');
+
+	var grd1 = context1.createLinearGradient(0,0,200,200);
+	grd1.addColorStop(0.0,'#000');
+	grd1.addColorStop(1.0,'#fff');
+
+	context1.fillStyle= grd1;
+	context1.fillRect(0,0,200,200);
+
+	/*
+	* 径向
+	 var grd = context.createRadialGradient(x0,y0,r0,x1,y1,r1); 
+	grd.addColorStop(stop,color);*/
+	var canvas2 = document.getElementById('canvas2');
+	var context2 = canvas2.getContext('2d');
+	var grd2 = context2.createRadialGradient(100,100,0,100,100,100);
+	grd2.addColorStop(0.0,'#000');
+	grd2.addColorStop(1.0,'#fff');
+
+	context2.fillStyle= grd2;
+	context2.fillRect(0,0,200,200);
+
+	/*
+	* 图片
+	 createPattern(img,repeat-style);
+	repeat-style:no-repeat;repeat-x;repeat-y,repeat*/
+
+	var canvas3 = document.getElementById('canvas3');
+	var context3 = canvas3.getContext('2d');
+	var  bgImg = new Image();
+	bgImg.src='img/1.png';
+	bgImg.onload = function(){
+		var pattern = context3.createPattern(bgImg,'repeat');
+		context3.fillStyle = pattern;
+		context3.fillRect(0,0,200,200);
+	}
+</script>
+
+</body>
+</html>

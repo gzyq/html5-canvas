@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Canvas基础-单个五角星</title>
+</head>
+<body>
+<div class="wrap">
+	<canvas id="canvas" width="200" height="200">
+		当前浏览器不支持canvas，请更换浏览器后再试。
+	</canvas>
+</div>
+<script>
+window.onload = function(){
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+	var R1 = 90;  //可更改看不同效果
+	var R2 =50;
+	var rot = 0; //旋转角度
+
+	context.lineWidth = 3;
+	drawStar(context,R1,R2,100,100,rot); //绘图上下文，外圆半径，内圆半径，x偏移，y偏移
+}
+
+function drawStar(cxt,R,r,x,y,rot){
+	cxt.beginPath();
+
+	for(var i=0;i<5;i++){
+		cxt.lineTo( Math.cos((18+i*72-rot)/180*Math.PI)*R+x,
+					    -Math.sin((18+i*72-rot)/180*Math.PI)*R+y); //外侧
+
+		cxt.lineTo( Math.cos((54+i*72-rot)/180*Math.PI)*r+x,
+					    -Math.sin((54+i*72-rot)/180*Math.PI)*r+y); //内侧
+		//()/180*Math.PI 将角度转换为弧度
+		//+100:将中点挪到（100,100）画布中间
+	}
+
+	cxt.closePath();
+	cxt.stroke();
+}
+</script>
+</body>
+</html>
